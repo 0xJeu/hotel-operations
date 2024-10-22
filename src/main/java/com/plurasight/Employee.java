@@ -34,10 +34,6 @@ public class Employee {
         return Math.max(this.hoursWorked - 40, 0);
     }
 
-    public void punchIn(double time) {
-        this.currentShiftTime = time;
-    }
-
     public void punchTimeCard() {
         while (true) {
             Scanner keyboard = new Scanner(System.in);
