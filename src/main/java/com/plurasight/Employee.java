@@ -1,5 +1,7 @@
 package com.plurasight;
 
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class Employee {
@@ -32,6 +34,36 @@ public class Employee {
 
     public double getOvertimeHours() {
         return Math.max(this.hoursWorked - 40, 0);
+    }
+
+    public void punchIn(double time) {
+        this.currentShiftTime = time;
+    }
+
+    public void punchIn() {
+        this.currentShiftTime = Double.parseDouble(LocalTime.now().format(DateTimeFormatter.ofPattern("HH.mm")));
+    }
+
+    public void punchOut(double time) {
+        if (this.currentShiftTime > 0) {
+            double shiftDuration = time - this.currentShiftTime;
+            this.hoursWorked += shiftDuration;
+            this.currentShiftTime = 0;
+        } else {
+            System.out.println("Employee hasn't punched in");
+        }
+
+    }
+
+    public void punchOut() {
+        if (this.currentShiftTime > 0) {
+            double time = Double.parseDouble(LocalTime.now().format(DateTimeFormatter.ofPattern("HH.mm")));
+            double shiftDuration = time - this.currentShiftTime;
+            this.hoursWorked += shiftDuration;
+            this.currentShiftTime = 0;
+        } else {
+            System.out.println("Employee hasn't punched in");
+        }
     }
 
     public void punchTimeCard() {

@@ -7,10 +7,15 @@ public class App {
         Employee employee = new Employee(55342, "Stephane", "HR", 35.00, 0);
 
 
-        employee.punchTimeCard();
-        System.out.println(employee.hoursWorked);
-        System.out.println(employee.currentShiftTime);
-        System.out.println(employee.getTotalPay());
+//        employee.punchIn();
+//        System.out.println(employee.currentShiftTime);
+//        employee.punchOut();
+//        System.out.println(employee.hoursWorked);
+//        System.out.println(employee.getTotalPay());
+
+        Hotel hotel = new Hotel("The Jeudy Hotel", 12, 50, 12, 50);
+
+        System.out.println(hotel.bookRoom(2, false));
 
     }
 }
