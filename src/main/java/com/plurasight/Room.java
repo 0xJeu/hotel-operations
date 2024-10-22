@@ -32,4 +32,15 @@ public class Room {
         return !isOccupied() && !isDirty();
     }
 
+    public void checkIn() {
+        this.roomDirty = true;
+        this.roomOccupied =true;
+    }
+
+    public void checkout() {
+        this.roomOccupied = false;
+    }
+
+
+
 }

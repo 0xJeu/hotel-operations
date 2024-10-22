@@ -1,9 +1,11 @@
 package com.plurasight;
 
+import java.util.Scanner;
+
 public class Employee {
     int employeeID;
     String name, department;
-    double payRate, hoursWorked;
+    double payRate, hoursWorked, currentShiftTime;
 
     public Employee(int employeeID, String name, String department, double payRate, double hoursWorked) {
         this.employeeID = employeeID;
@@ -30,6 +32,50 @@ public class Employee {
 
     public double getOvertimeHours() {
         return Math.max(this.hoursWorked - 40, 0);
+    }
+
+    public void punchIn(double time) {
+        this.currentShiftTime = time;
+    }
+
+    public void punchTimeCard() {
+        while (true) {
+            Scanner keyboard = new Scanner(System.in);
+
+            System.out.print("Are you punching (in) or (out)? ('X' to exit program ): ");
+            String userInput = keyboard.nextLine().toLowerCase();
+
+            switch (userInput) {
+                case "in":
+                    System.out.print("Please enter time in (ex. 9.0 for 9AM): ");
+                    this.currentShiftTime = Double.parseDouble(keyboard.nextLine());
+                    System.out.println("""
+                            Employee time punched in successfully!
+                            Returning to main menu..
+                            ---------------""");
+                    break;
+                case "out":
+                    if (this.currentShiftTime > 0) {
+                        System.out.print("Please enter time out (ex. 17.0 for 5PM): ");
+                        double shiftDuration = Double.parseDouble(keyboard.nextLine()) - this.currentShiftTime;
+                        this.hoursWorked += shiftDuration;
+                        this.currentShiftTime = 0;
+                        System.out.println("""
+                                Employee time punched out successfully!
+                                Returning to main menu..
+                                ---------------""");
+                        break;
+                    } else {
+                        System.out.println("Employee hasn't punched in");
+                    }
+                case "x":
+                    System.out.println("Exiting program...");
+                    return;
+                default:
+                    System.out.println("Error: Invalid input. please try again!");
+            }
+        }
+
     }
 
 }
