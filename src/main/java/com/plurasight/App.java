@@ -13,7 +13,7 @@ public class App {
 //        System.out.println(employee.hoursWorked);
 //        System.out.println(employee.getTotalPay());
 
-        Hotel hotel = new Hotel("The Jeudy Hotel", 12, 50, 12, 50);
+        Hotel hotel = new Hotel("The Jeudy Hotel", 12, 50, 12, 48);
 
         System.out.println(hotel.bookRoom(2, false));
 

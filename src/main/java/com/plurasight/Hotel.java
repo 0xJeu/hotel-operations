@@ -21,47 +21,24 @@ public class Hotel {
     }
 
     public boolean bookRoom(int numberOfRooms, boolean isSuite) {
-        boolean result = true;
+        boolean result = false;
 
-        if ((this.numberOfSuites > 0 && isSuite)) {
-            this.bookedSuites += 1;
-        } else if (this.numberOfRooms > 0 && !isSuite) {
-            this.bookedBasicRooms += 1;
-        }else {
-            result = false;
+        if ((getAvailableSuites() >= numberOfRooms && isSuite)) {
+            this.bookedSuites += numberOfRooms;
+            result = true;
+        } else if (getAvailableRooms() >= numberOfRooms && !isSuite) {
+            this.bookedBasicRooms += numberOfRooms;
+            result = true;
         }
         return result;
     }
 
     public int getAvailableSuites() {
-        return getNumberOfSuites() - getBookedSuites();
+        return this.numberOfSuites - this.bookedSuites;
     }
 
     public int getAvailableRooms() {
-        return getNumberOfRooms() - getBookedBasicRooms();
+        return this.numberOfRooms - this.bookedBasicRooms;
     }
-
-    //Getters
-    public String getName() {
-        return name;
-    }
-
-    public int getBookedSuites() {
-        return bookedSuites;
-    }
-
-    public int getNumberOfRooms() {
-        return numberOfRooms;
-    }
-
-    public int getNumberOfSuites() {
-        return numberOfSuites;
-    }
-
-    public int getBookedBasicRooms() {
-        return bookedBasicRooms;
-    }
-
-
-
 }
+

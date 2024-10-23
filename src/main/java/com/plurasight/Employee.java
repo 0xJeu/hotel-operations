@@ -19,11 +19,10 @@ public class Employee {
 
     public double getTotalPay() {
         if (this.hoursWorked <= 40) {
-            return this.hoursWorked * this.payRate;
+            return this.getRegularHours() * this.payRate;
         } else {
-            double regularPay = 40 * this.payRate;
-            double overtimeHours = this.hoursWorked - 40;
-            double overtimePay = overtimeHours * this.payRate * 1.5;
+            double regularPay = this.getRegularHours() * this.payRate;
+            double overtimePay = this.getOvertimeHours() * (this.payRate * 1.5);
             return regularPay + overtimePay;
         }
     }

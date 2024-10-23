@@ -30,10 +30,12 @@ public class Reservation {
     public void setRoomType(String roomType) {
         this.roomType = roomType;
 
+        double weekendFactor = (this.weekendStay) ? 1.1 : 1;
+
         if (roomType.equalsIgnoreCase("king")) {
-            this.price = 139.00;
+            this.price = 139.00 * weekendFactor;
         } else if (roomType.equalsIgnoreCase("double")) {
-            this.price = 124.00;
+            this.price = 124.00 * weekendFactor;
         }
     }
 
@@ -49,11 +51,9 @@ public class Reservation {
     //Boolean Setter
     public void setIsWeekend(boolean weekendStay) {
         this.weekendStay = weekendStay;
-        this.price *= .10;
     }
 
     public double getReservationTotal() {
         return this.price * this.numberOfNights;
     }
-
 }

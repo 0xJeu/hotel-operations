@@ -29,18 +29,26 @@ public class Room {
     }
 
     public boolean isAvailable() {
-        return !isOccupied() && !isDirty();
+        return !this.roomOccupied && !this.roomDirty;
     }
 
     public void checkIn() {
-        this.roomDirty = true;
-        this.roomOccupied =true;
+        if (this.isAvailable()) {
+            this.roomDirty = true;
+            this.roomOccupied = true;
+        } else {
+            System.out.println("Sorry, this room is not available");
+        }
+
     }
 
-    public void checkout() {
+    public void checkOut() {
         this.roomOccupied = false;
     }
 
+    public void cleanRoom() {
+        this.roomDirty = false;
+    }
 
 
 }
